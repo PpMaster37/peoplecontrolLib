@@ -1,0 +1,1 @@
+class returnObject(val worker: Worker, val info: Boolean) {}
