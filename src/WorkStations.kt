@@ -4,9 +4,9 @@ class WorkStations {
     private var type: WorkStationType
     private val workers = mutableListOf<Worker>()
     private var tier: Int = 1
-    private var positions: Int = 0
+    private val positions: Int
         get() {
-            return this.tier
+            return this.tier * 3
         }
 
     init {
@@ -17,33 +17,36 @@ class WorkStations {
     }
 
     fun upgrade() {
-        positions
+        tier++
     }
-    fun calculateProduction(): Double{
+
+    fun calculateProduction(): Double {
         var x = 0.0
-        for(worker in workers){
+        for (worker in workers) {
             x += worker.work()
         }
         return x
     }
 
-    fun calculateConsumption(): Double{
+    fun calculateConsumption(): Double {
         var x = 0.0
-        for(worker in workers){
+        for (worker in workers) {
             x += (tier * 2.0 / (worker.prodLog()))
         }
+        x += (tier / 2) * (positions - workers.size)
         return x
     }
 
-    fun setType(inputType:WorkStationType){
+    fun setType(inputType: WorkStationType) {
         type = inputType
     }
 
-    fun addWorker(worker: Worker){
+    fun addWorker(worker: Worker) {
+        worker.setWorkType(type)
         workers.add(worker)
     }
 
-    fun available(): Boolean{
+    fun available(): Boolean {
         return workers.size < positions
     }
 }

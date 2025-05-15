@@ -22,10 +22,10 @@ class Worker(workStation: WorkStationType) {
 
     fun cycle() {
         val generator = RandomGenerator.of("")
-        if(isWorking) {
+        if (isWorking) {
             productivity -= sqrt(generator.nextDouble(productivity / 4.0))
         } else if (productivity < 100) {
-            productivity *= (100.00-productivity) / 100.0 + 1
+            productivity *= (100.00 - productivity) / 100.0 + 1
         }
         if (generator.nextInt(productivity.toInt()) == 1) {
             death = true
@@ -41,16 +41,22 @@ class Worker(workStation: WorkStationType) {
     }
 
     fun getSpecStat(): Double {
-        return when(workType){
+        return when (workType) {
             WorkStationType.INTWorkStation -> intStat.toDouble()
             WorkStationType.PHYWorkStation -> phyStat.toDouble()
             WorkStationType.STRWorkStation -> strStat.toDouble()
             WorkStationType.NULLTYPE -> 0.0
         }
     }
+
+    fun setWorkType(workType: WorkStationType) {
+        this.workType = workType
+    }
+
     fun getAliveStatus(): Boolean {
         return death
     }
+
     fun getID(): String {
         return id
     }

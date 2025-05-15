@@ -6,17 +6,17 @@ object Operator {
 
     fun move(id: String, destination: WorkStations): Boolean {
         val obj = findWorker(id)
-        if(obj.info && destination.available()){
+        if (obj.info && destination.available()) {
             destination.addWorker(obj.worker)
             return true
         }
         return false
     }
 
-    fun findWorker(id: String): returnObject{
+    fun findWorker(id: String): returnObject {
         val workerArr = currentWorld.getWorkers()
         for (worker in workerArr) {
-            if(worker.getID() == id) {
+            if (worker.getID() == id) {
                 return returnObject(worker, true)
             }
         }
