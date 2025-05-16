@@ -27,12 +27,18 @@ class Worker(workStation: WorkStationType) {
         } else if (productivity < 100) {
             productivity *= (100.00 - productivity) / 100.0 + 1
         }
-        if (generator.nextInt(productivity.toInt()) == 1) {
+        if (generator.nextInt(productivity.toInt() * 2) == 1) {
             death = true
         }
     }
 
     fun work(): Double {
+        when (workType) {
+            WorkStationType.INTWorkStation -> intStat + 0.01
+            WorkStationType.PHYWorkStation -> phyStat + 0.01
+            WorkStationType.STRWorkStation -> strStat + 0.01
+            WorkStationType.NULLTYPE -> intStat + 0
+        }
         return prodLog() * getSpecStat()
     }
 
@@ -53,11 +59,15 @@ class Worker(workStation: WorkStationType) {
         this.workType = workType
     }
 
-    fun getAliveStatus(): Boolean {
+    fun getDeadStatus(): Boolean {
         return death
     }
 
     fun getID(): String {
         return id
+    }
+
+    fun getWorking(): Boolean {
+        return isWorking
     }
 }

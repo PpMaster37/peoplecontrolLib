@@ -22,4 +22,8 @@ object Operator {
         }
         return returnObject(Worker(WorkStationType.NULLTYPE), false)
     }
+
+    fun cycle(){
+        currentWorld.cycle()
+    }
 }

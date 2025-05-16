@@ -25,6 +25,9 @@ class WorkStations {
         for (worker in workers) {
             x += worker.work()
         }
+        if (type == WorkStationType.NULLTYPE) {
+            return 0.0
+        }
         return x
     }
 
@@ -34,6 +37,9 @@ class WorkStations {
             x += (tier * 2.0 / (worker.prodLog()))
         }
         x += (tier / 2) * (positions - workers.size)
+        if (type == WorkStationType.NULLTYPE) {
+            return 0.0
+        }
         return x
     }
 

@@ -8,9 +8,11 @@ class World {
         val str = WorkStations()
         val int = WorkStations()
         val phy = WorkStations()
+        val notWorking = WorkStations()
         str.setType(WorkStationType.STRWorkStation)
         int.setType(WorkStationType.INTWorkStation)
         phy.setType(WorkStationType.PHYWorkStation)
+        notWorking.setType(WorkStationType.NULLTYPE)
         workStations.addAll(setOf<WorkStations>(str, int, phy))
         workers.addAll(randomWorkerList())
         workStations.addAll(randomWorkStationSet())
@@ -24,8 +26,10 @@ class World {
         }
         for (worker in workers) {
             worker.cycle()
-            if (worker.getAliveStatus()) {
+            if (worker.getDeadStatus()) {
                 workers.remove(worker)
+            } else if (!worker.getWorking()) {
+                products -= worker.prodLog() * 0.75
             }
         }
         print("Net Production: $products" )
