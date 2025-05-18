@@ -13,6 +13,12 @@ object Operator {
         return false
     }
 
+    fun generateWorker() {
+        val w = Worker(WorkStationType.NULLTYPE)
+        w.nuke()
+        currentWorld.getWorkers().add(w)
+    }
+
     fun findWorker(id: String): returnObject {
         val workerArr = currentWorld.getWorkers()
         for (worker in workerArr) {

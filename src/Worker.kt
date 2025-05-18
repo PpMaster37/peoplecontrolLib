@@ -70,4 +70,11 @@ class Worker(workStation: WorkStationType) {
     fun getWorking(): Boolean {
         return isWorking
     }
+
+    fun nuke() {
+        productivity = 1.0
+        strStat = 1
+        intStat = 1
+        phyStat = 1
+    }
 }
