@@ -34,9 +34,9 @@ class WorkStations {
     fun calculateConsumption(): Double {
         var x = 0.0
         for (worker in workers) {
-            x += (tier * 2.0 / (worker.prodLog()))
+            x += (tier * 4.0 / (worker.prodLog()))
         }
-        x += (tier / 2) * (positions - workers.size)
+        x += (tier) * (positions - workers.size)
         if (type == WorkStationType.NULLTYPE) {
             return 0.0
         }

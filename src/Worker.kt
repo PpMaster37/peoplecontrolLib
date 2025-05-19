@@ -3,7 +3,12 @@ import kotlin.math.exp
 import kotlin.math.sqrt
 
 class Worker(workStation: WorkStationType) {
-    private lateinit var id: String
+    private val id: String
+        get() {
+            var x = workType.toString()
+            x = x + getSpecStat().toString()
+            return x
+        }
     private var intStat: Int = 0
     private var phyStat: Int = 0
     private var strStat: Int = 0
@@ -34,9 +39,9 @@ class Worker(workStation: WorkStationType) {
 
     fun work(): Double {
         when (workType) {
-            WorkStationType.INTWorkStation -> intStat + 0.01
-            WorkStationType.PHYWorkStation -> phyStat + 0.01
-            WorkStationType.STRWorkStation -> strStat + 0.01
+            WorkStationType.INTWorkStation -> intStat + 0.005
+            WorkStationType.PHYWorkStation -> phyStat + 0.005
+            WorkStationType.STRWorkStation -> strStat + 0.005
             WorkStationType.NULLTYPE -> intStat + 0
         }
         return prodLog() * getSpecStat()
